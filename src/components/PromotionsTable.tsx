@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { Calendar, Check, Clock, Info, Package, PackageCheck, Search, Tag, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,7 +8,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { StatusBadge } from "./StatusBadge";
 
-// Types
 type Promotion = {
   id: string;
   name: string;
@@ -19,7 +18,6 @@ type Promotion = {
   code: string;
 };
 
-// Sample data
 const promotionsData: Promotion[] = [
   {
     id: "PR-2023-001",
@@ -122,7 +120,6 @@ const promotionsData: Promotion[] = [
   }
 ];
 
-// Status icon mapping
 const statusIcons = {
   "Ordered": <Clock className="h-4 w-4 text-status-ordered" />,
   "Cancelled": <X className="h-4 w-4 text-status-cancelled" />,
@@ -135,7 +132,6 @@ export function PromotionsTable() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   
-  // Filter promotions based on search query and status
   const filteredPromotions = promotionsData.filter(promotion => {
     const matchesSearch = 
       promotion.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -219,8 +215,11 @@ export function PromotionsTable() {
                         variant="ghost"
                         size="icon"
                         aria-label="View details"
+                        asChild
                       >
-                        <Info className="h-4 w-4" />
+                        <Link to={`/promotion/${promotion.id}`}>
+                          <Info className="h-4 w-4" />
+                        </Link>
                       </Button>
                     </TableCell>
                   </TableRow>
