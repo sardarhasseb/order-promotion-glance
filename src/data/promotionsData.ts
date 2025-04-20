@@ -2,6 +2,40 @@ import { Promotion } from "@/types/promotion";
 
 export const promotionsData: Promotion[] = [
   {
+    id: "PR-2023-003",
+    name: "Black Friday",
+    title: "Golden Tickets",
+    orderBeforeDate: "2023-01-03",
+    startDate: "2024-01-11",
+    endDate: "2023-09-09",
+    prizeDrawDate: "2024-11-19",
+    prizeDescription: "A Golden Ticket Promotion is a marketing strategy that uses an element of surprise and exclusivity to drive engagement and excitement among customers. Here's an overview of what a Golden Ticket Promotion generally includes and how it works:\n\nKey Elements of a Golden Ticket Promotion\nHidden Prizes or Rewards: Similar to the iconic \"golden ticket\" concept, a certain number of tickets (or similar items) are hidden within products, stores, or packages. These tickets serve as an entryway to exclusive prizes, discounts, or VIP experiences. For example, customers might find golden tickets inside specific product packaging, or they may receive a digital \"golden ticket\" after making a purchase.",
+    orderNo: "PRM-ORD-000001",
+    orderBy: "Haseeb Khan",
+    orderDate: "2023-04-19",
+    orderTime: "2:03 PM",
+    promotionCost: 340.00,
+    quantity: 3,
+    totalCost: 1020.00,
+    venue: "Algester Sports Inc",
+    status: "Ordered",
+    code: "BF23",
+    items: [
+      {
+        description: "Item Description",
+        price: 80.00
+      },
+      {
+        description: "POS & Delivery",
+        price: 80.00
+      },
+      {
+        description: "Vouchers",
+        price: 260.00
+      }
+    ]
+  },
+  {
     id: "PR-2023-001",
     name: "Summer Sale 2023",
     orderDate: "2023-06-01",
@@ -18,15 +52,6 @@ export const promotionsData: Promotion[] = [
     status: "Closed",
     amount: "$850.00",
     code: "BTS2023"
-  },
-  {
-    id: "PR-2023-003",
-    name: "Black Friday",
-    orderDate: "2023-11-15",
-    endDate: "2023-11-30",
-    status: "Closed",
-    amount: "$2,500.00",
-    code: "BF23"
   },
   {
     id: "PR-2023-004",
