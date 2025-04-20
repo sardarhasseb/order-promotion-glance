@@ -1,6 +1,5 @@
-
 import { Clock, Check, X, Package, PackageCheck } from "lucide-react";
-import type { PromotionStatus } from "@/types/promotion";
+import type { Promotion, PromotionStatus } from "@/types/promotion";
 
 export const statusIcons: Record<PromotionStatus, JSX.Element> = {
   "Ordered": <Clock className="h-4 w-4 text-status-ordered" />,
