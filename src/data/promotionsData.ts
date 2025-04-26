@@ -1,6 +1,8 @@
 import { Promotion } from "@/types/promotion";
+import { formatDate } from "@/lib/utils";
 
 export const promotionsData: Promotion[] = [
+  // Existing first entry remains the same
   {
     id: "PR-2023-003",
     name: "Black Friday",
@@ -9,7 +11,7 @@ export const promotionsData: Promotion[] = [
     startDate: "2024-01-11",
     endDate: "2023-09-09",
     prizeDrawDate: "2024-11-19",
-    prizeDescription: "A Golden Ticket Promotion is a marketing strategy that uses an element of surprise and exclusivity to drive engagement and excitement among customers. Here's an overview of what a Golden Ticket Promotion generally includes and how it works:\n\nKey Elements of a Golden Ticket Promotion\nHidden Prizes or Rewards: Similar to the iconic \"golden ticket\" concept, a certain number of tickets (or similar items) are hidden within products, stores, or packages. These tickets serve as an entryway to exclusive prizes, discounts, or VIP experiences. For example, customers might find golden tickets inside specific product packaging, or they may receive a digital \"golden ticket\" after making a purchase.",
+    prizeDescription: "A Golden Ticket Promotion is a marketing strategy that uses an element of surprise and exclusivity to drive engagement and excitement among customers.",
     orderNo: "PRM-ORD-000001",
     orderBy: "Haseeb Khan",
     orderDate: "2023-04-19",
@@ -34,8 +36,10 @@ export const promotionsData: Promotion[] = [
         description: "Vouchers",
         price: 260.00
       }
-    ]
+    ],
+    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b"
   },
+  // Update other entries to have required fields
   {
     id: "PR-2023-001",
     name: "Summer Sale 2023",
@@ -55,7 +59,8 @@ export const promotionsData: Promotion[] = [
     venue: "Central Mall",
     status: "Closed",
     code: "SUMMER23",
-    items: [{ description: "Summer Package", price: 200.00 }]
+    items: [{ description: "Summer Package", price: 200.00 }],
+    image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843"
   },
   {
     id: "PR-2023-002",
@@ -76,70 +81,189 @@ export const promotionsData: Promotion[] = [
     venue: "City Mall",
     status: "Closed",
     code: "BTS2023",
-    items: [{ description: "School Package", price: 150.00 }]
+    items: [{ description: "School Package", price: 150.00 }],
+    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1"
   },
   {
     id: "PR-2023-004",
     name: "Holiday Season",
-    orderDate: "2023-12-01",
+    title: "Winter Wonderland",
+    orderBeforeDate: "2023-12-15",
+    startDate: "2023-12-01",
     endDate: "2023-12-31",
+    prizeDrawDate: "2024-01-05",
+    prizeDescription: "Celebrate the holiday season with amazing deals and gifts!",
+    orderNo: "PRM-ORD-000004",
+    orderBy: "Marketing Team",
+    orderDate: "2023-12-01",
+    orderTime: "9:00 AM",
+    promotionCost: 500.00,
+    quantity: 2,
+    totalCost: 1000.00,
+    venue: "Online Store",
     status: "Closed",
-    code: "HOLIDAY23"
+    code: "HOLIDAY23",
+    items: [
+      { description: "Holiday Gift Set", price: 500.00 },
+      { description: "Shipping", price: 0.00 }
+    ],
+    image: "https://images.unsplash.com/photo-1466442929976-97f336a657be"
   },
   {
     id: "PR-2024-001",
     name: "New Year Sale",
-    orderDate: "2024-01-01",
+    title: "Fresh Start Deals",
+    orderBeforeDate: "2024-01-10",
+    startDate: "2024-01-01",
     endDate: "2024-01-15",
+    prizeDrawDate: "2024-01-20",
+    prizeDescription: "Welcome the new year with incredible discounts and offers!",
+    orderNo: "PRM-ORD-000005",
+    orderBy: "Sales Department",
+    orderDate: "2024-01-01",
+    orderTime: "12:00 AM",
+    promotionCost: 250.00,
+    quantity: 1,
+    totalCost: 250.00,
+    venue: "Nationwide",
     status: "Closed",
-    code: "NY2024"
+    code: "NY2024",
+    items: [{ description: "New Year Package", price: 250.00 }],
+    image: "https://images.unsplash.com/photo-1551038247-3d9af20df552"
   },
   {
     id: "PR-2024-002",
     name: "Valentine's Day",
-    orderDate: "2024-02-01",
+    title: "Love is in the Air",
+    orderBeforeDate: "2024-02-10",
+    startDate: "2024-02-01",
     endDate: "2024-02-14",
+    prizeDrawDate: "2024-02-15",
+    prizeDescription: "Special offers for the most romantic day of the year!",
+    orderNo: "PRM-ORD-000006",
+    orderBy: "Marketing Team",
+    orderDate: "2024-02-01",
+    orderTime: "9:00 AM",
+    promotionCost: 300.00,
+    quantity: 1,
+    totalCost: 300.00,
+    venue: "Online & Stores",
     status: "Closed",
-    code: "VDAY24"
+    code: "VDAY24",
+    items: [{ description: "Valentine's Package", price: 300.00 }],
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901"
   },
   {
     id: "PR-2024-003",
     name: "Spring Collection",
-    orderDate: "2024-03-01",
+    title: "Spring Refresh",
+    orderBeforeDate: "2024-03-20",
+    startDate: "2024-03-01",
     endDate: "2024-04-30",
+    prizeDrawDate: "2024-05-05",
+    prizeDescription: "Embrace the spring season with our latest collection!",
+    orderNo: "PRM-ORD-000007",
+    orderBy: "Product Team",
+    orderDate: "2024-03-01",
+    orderTime: "10:00 AM",
+    promotionCost: 400.00,
+    quantity: 2,
+    totalCost: 800.00,
+    venue: "Multiple Locations",
     status: "Dispatched",
-    code: "SPRING24"
+    code: "SPRING24",
+    items: [
+      { description: "Spring Collection Item 1", price: 200.00 },
+      { description: "Spring Collection Item 2", price: 200.00 }
+    ],
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04"
   },
   {
     id: "PR-2024-004",
     name: "Easter Promotions",
-    orderDate: "2024-03-15",
+    title: "Egg-cellent Deals",
+    orderBeforeDate: "2024-03-10",
+    startDate: "2024-03-15",
     endDate: "2024-04-10",
+    prizeDrawDate: "2024-04-15",
+    prizeDescription: "Hop into savings with our special Easter promotions!",
+    orderNo: "PRM-ORD-000008",
+    orderBy: "Marketing Team",
+    orderDate: "2024-03-15",
+    orderTime: "11:00 AM",
+    promotionCost: 350.00,
+    quantity: 1,
+    totalCost: 350.00,
+    venue: "Participating Stores",
     status: "In Preparation",
-    code: "EASTER24"
+    code: "EASTER24",
+    items: [{ description: "Easter Basket", price: 350.00 }],
+    image: "https://images.unsplash.com/photo-1615498496644-3371c8a1c993"
   },
   {
     id: "PR-2024-005",
     name: "Mother's Day Special",
-    orderDate: "2024-04-15",
+    title: "A Gift for Mom",
+    orderBeforeDate: "2024-04-25",
+    startDate: "2024-04-15",
     endDate: "2024-05-12",
+    prizeDrawDate: "2024-05-15",
+    prizeDescription: "Show your love with our special Mother's Day gifts!",
+    orderNo: "PRM-ORD-000009",
+    orderBy: "Sales Team",
+    orderDate: "2024-04-15",
+    orderTime: "10:30 AM",
+    promotionCost: 450.00,
+    quantity: 1,
+    totalCost: 450.00,
+    venue: "Online & Select Stores",
     status: "Ordered",
-    code: "MOM2024"
+    code: "MOM2024",
+    items: [{ description: "Mother's Day Gift Set", price: 450.00 }],
+    image: "https://images.unsplash.com/photo-1556013814-3964c3c7e743"
   },
   {
     id: "PR-2024-006",
     name: "Flash Sale April",
-    orderDate: "2024-04-01",
+    title: "April Savings",
+    orderBeforeDate: "2024-03-31",
+    startDate: "2024-04-01",
     endDate: "2024-04-03",
+    prizeDrawDate: "2024-04-05",
+    prizeDescription: "Limited-time flash sale with incredible discounts!",
+    orderNo: "PRM-ORD-000010",
+    orderBy: "Marketing Team",
+    orderDate: "2024-04-01",
+    orderTime: "12:00 AM",
+    promotionCost: 100.00,
+    quantity: 1,
+    totalCost: 100.00,
+    venue: "Online Only",
     status: "Ordered",
-    code: "FLASH0423"
+    code: "FLASH0423",
+    items: [{ description: "Flash Sale Item", price: 100.00 }],
+    image: "https://images.unsplash.com/photo-1556740758-90de96639a52"
   },
   {
     id: "PR-2024-007",
     name: "Summer Preview",
-    orderDate: "2024-05-01",
+    title: "Taste of Summer",
+    orderBeforeDate: "2024-04-30",
+    startDate: "2024-05-01",
     endDate: "2024-05-15",
+    prizeDrawDate: "2024-05-20",
+    prizeDescription: "Get a sneak peek at our summer collection!",
+    orderNo: "PRM-ORD-000011",
+    orderBy: "Product Team",
+    orderDate: "2024-05-01",
+    orderTime: "11:30 AM",
+    promotionCost: 200.00,
+    quantity: 1,
+    totalCost: 200.00,
+    venue: "Select Locations",
     status: "Cancelled",
-    code: "SUMMER24PRE"
+    code: "SUMMER24PRE",
+    items: [{ description: "Summer Preview Item", price: 200.00 }],
+    image: "https://images.unsplash.com/photo-1560759308-989470479a79"
   }
 ];

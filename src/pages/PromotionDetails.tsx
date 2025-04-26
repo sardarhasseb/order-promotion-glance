@@ -1,5 +1,5 @@
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Image } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -53,11 +53,11 @@ const PromotionDetailsPage = () => {
 
         {/* Main Content */}
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Hero Section - Full width on mobile */}
+          {/* Hero Section - Vertical Image */}
           <Card className="lg:col-span-2 shadow-lg border-none overflow-hidden">
-            <AspectRatio ratio={isMobile ? 16/9 : 21/9}>
+            <AspectRatio ratio={3/4}>
               <img
-                src={promotion.image || "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"}
+                src={promotion.image || "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b"}
                 alt={promotion.title}
                 className="object-cover w-full h-full"
               />
@@ -77,16 +77,18 @@ const PromotionDetailsPage = () => {
               <CardContent className="p-6">
                 <div className="space-y-6">
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {promotion.tags?.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-primary/5 text-primary rounded-full text-sm font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  {promotion.tags && promotion.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {promotion.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-primary/5 text-primary rounded-full text-sm font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   
                   {/* Basic Info */}
                   <div className="space-y-4">
