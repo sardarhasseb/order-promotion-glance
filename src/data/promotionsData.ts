@@ -1,8 +1,6 @@
 import { Promotion } from "@/types/promotion";
-import { formatDate } from "@/lib/utils";
 
 export const promotionsData: Promotion[] = [
-  // Existing first entry remains the same
   {
     id: "PR-2023-003",
     name: "Black Friday",
@@ -39,7 +37,6 @@ export const promotionsData: Promotion[] = [
     ],
     image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b"
   },
-  // Update other entries to have required fields
   {
     id: "PR-2023-001",
     name: "Summer Sale 2023",
