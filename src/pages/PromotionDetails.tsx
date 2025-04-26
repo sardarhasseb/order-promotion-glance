@@ -7,6 +7,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { promotionsData } from "@/data/promotionsData";
 import type { Promotion } from "@/types/promotion";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const getPromotionDetails = (id: string): Promotion | undefined => {
   return promotionsData.find(promo => promo.id === id);
@@ -15,11 +16,12 @@ const getPromotionDetails = (id: string): Promotion | undefined => {
 const PromotionDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const promotion = getPromotionDetails(id || "");
 
   if (!promotion) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center p-4">
         <Card>
           <CardContent className="pt-6">
             <p>Promotion not found</p>
@@ -35,85 +37,46 @@ const PromotionDetailsPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-7xl">
-        <div className="mb-6 flex items-center gap-4">
-          <Button variant="ghost" onClick={() => navigate("/")} className="hover:bg-gray-100">
+      <div className="container mx-auto px-4 py-4 sm:py-8 max-w-7xl">
+        {/* Header */}
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-4">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate("/")} 
+            className="self-start hover:bg-gray-100"
+          >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
           </Button>
-          <h1 className="text-2xl font-semibold text-gray-900">{promotion.name}</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">{promotion.name}</h1>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Main Content - 2 columns */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Hero Card */}
-            <Card className="overflow-hidden border-none shadow-lg">
-              <AspectRatio ratio={21/9}>
-                <img
-                  src={promotion.image || "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"}
-                  alt={promotion.title}
-                  className="object-cover w-full h-full rounded-t-lg"
-                />
-              </AspectRatio>
-              <CardContent className="p-6 bg-white/80 backdrop-blur-sm">
-                <h2 className="text-2xl font-bold mb-4">{promotion.title}</h2>
-                <p className="text-gray-600 leading-relaxed">{promotion.prizeDescription}</p>
-              </CardContent>
-            </Card>
+        {/* Main Content */}
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Hero Section - Full width on mobile */}
+          <Card className="lg:col-span-2 shadow-lg border-none overflow-hidden">
+            <AspectRatio ratio={isMobile ? 16/9 : 21/9}>
+              <img
+                src={promotion.image || "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"}
+                alt={promotion.title}
+                className="object-cover w-full h-full"
+              />
+            </AspectRatio>
+            <CardContent className="p-6 bg-white/80 backdrop-blur-sm">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4">{promotion.title}</h2>
+              <p className="text-gray-600 leading-relaxed whitespace-pre-line">{promotion.prizeDescription}</p>
+            </CardContent>
+          </Card>
 
-            {/* Order Details Card */}
-            <Card className="shadow-md">
-              <CardHeader className="border-b bg-gray-50/50">
-                <CardTitle className="text-lg">Order Details</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-6">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <InfoItem label="Order Number" value={promotion.orderNo} />
-                    <InfoItem label="Ordered By" value={promotion.orderBy} />
-                    <InfoItem 
-                      label="Order Date & Time" 
-                      value={`${new Date(promotion.orderDate).toLocaleDateString()} ${promotion.orderTime}`} 
-                    />
-                    <InfoItem 
-                      label="Status" 
-                      value={<StatusBadge status={promotion.status} />} 
-                    />
-                  </div>
-
-                  <div className="border-t pt-4">
-                    <h3 className="font-medium text-gray-900 mb-4">Items</h3>
-                    <div className="space-y-3">
-                      {promotion.items.map((item, index) => (
-                        <div 
-                          key={index} 
-                          className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <span className="text-gray-700">{item.description}</span>
-                          <span className="font-medium">${item.price.toFixed(2)}</span>
-                        </div>
-                      ))}
-                      <div className="flex justify-between items-center p-4 bg-primary/5 rounded-lg mt-4">
-                        <span className="font-medium text-gray-900">Total Cost</span>
-                        <span className="font-semibold text-primary">${promotion.totalCost.toFixed(2)}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Sidebar Content */}
+          {/* Sidebar Content - Moves below on mobile */}
           <div className="space-y-6">
-            {/* Promotion Info Card */}
             <Card className="shadow-md">
               <CardHeader className="border-b bg-gray-50/50">
                 <CardTitle className="text-lg">Promotion Information</CardTitle>
               </CardHeader>
               <CardContent className="p-6">
                 <div className="space-y-6">
+                  {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {promotion.tags?.map((tag, index) => (
                       <span
@@ -125,6 +88,7 @@ const PromotionDetailsPage = () => {
                     ))}
                   </div>
                   
+                  {/* Basic Info */}
                   <div className="space-y-4">
                     <InfoItem label="Venue" value={promotion.venue} />
                     <InfoItem label="Promotion Code" value={
@@ -134,6 +98,7 @@ const PromotionDetailsPage = () => {
                     } />
                   </div>
 
+                  {/* Important Dates */}
                   <div className="space-y-4 pt-4 border-t">
                     <h4 className="font-medium text-gray-900">Important Dates</h4>
                     <InfoItem 
@@ -152,6 +117,50 @@ const PromotionDetailsPage = () => {
                       label="Order Before" 
                       value={new Date(promotion.orderBeforeDate).toLocaleDateString()} 
                     />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Order Details Card */}
+            <Card className="shadow-md">
+              <CardHeader className="border-b bg-gray-50/50">
+                <CardTitle className="text-lg">Order Details</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="space-y-6">
+                  {/* Order Info Grid */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <InfoItem label="Order Number" value={promotion.orderNo} />
+                    <InfoItem label="Ordered By" value={promotion.orderBy} />
+                    <InfoItem 
+                      label="Order Date & Time" 
+                      value={`${new Date(promotion.orderDate).toLocaleDateString()} ${promotion.orderTime}`} 
+                    />
+                    <InfoItem 
+                      label="Status" 
+                      value={<StatusBadge status={promotion.status} />} 
+                    />
+                  </div>
+
+                  {/* Items List */}
+                  <div className="border-t pt-4">
+                    <h3 className="font-medium text-gray-900 mb-4">Items</h3>
+                    <div className="space-y-3">
+                      {promotion.items.map((item, index) => (
+                        <div 
+                          key={index} 
+                          className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                          <span className="text-gray-700">{item.description}</span>
+                          <span className="font-medium">${item.price.toFixed(2)}</span>
+                        </div>
+                      ))}
+                      <div className="flex justify-between items-center p-4 bg-primary/5 rounded-lg mt-4">
+                        <span className="font-medium text-gray-900">Total Cost</span>
+                        <span className="font-semibold text-primary">${promotion.totalCost.toFixed(2)}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>

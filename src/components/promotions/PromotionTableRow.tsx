@@ -28,7 +28,7 @@ export function PromotionTableRow({ promotion }: PromotionTableRowProps) {
           <StatusBadge status={promotion.status} />
         </div>
       </TableCell>
-      <TableCell className="hidden sm:table-cell">{promotion.amount}</TableCell>
+      <TableCell className="hidden sm:table-cell">${promotion.totalCost?.toFixed(2) || '-'}</TableCell>
       <TableCell className="hidden lg:table-cell">
         <div className="flex items-center">
           <Tag className="mr-1 h-3 w-3" />
