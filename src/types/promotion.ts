@@ -26,4 +26,6 @@ export type Promotion = {
   status: PromotionStatus;
   items: PromotionItem[];
   code: string;
+  image?: string;
+  tags?: string[];
 };

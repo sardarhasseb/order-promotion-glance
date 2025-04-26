@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatusBadge } from "@/components/StatusBadge";
 import { promotionsData } from "@/data/promotionsData";
 import type { Promotion } from "@/types/promotion";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const getPromotionDetails = (id: string): Promotion | undefined => {
   return promotionsData.find(promo => promo.id === id);
@@ -33,128 +34,135 @@ const PromotionDetailsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container max-w-screen 2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="mb-8 flex items-center gap-4">
           <Button variant="ghost" onClick={() => navigate("/")} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back to Promotions
           </Button>
-          <h1 className="text-2xl font-semibold">Promotion Details</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{promotion.title}</h1>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Promotion Information</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4">
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Title:</span>
-                  <span>{promotion.title}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Order Before Date:</span>
-                  <span>{new Date(promotion.orderBeforeDate).toLocaleDateString()}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Start Date:</span>
-                  <span>{new Date(promotion.startDate).toLocaleDateString()}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">End Date:</span>
-                  <span>{new Date(promotion.endDate).toLocaleDateString()}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Prize Draw Date:</span>
-                  <span>{new Date(promotion.prizeDrawDate).toLocaleDateString()}</span>
-                </div>
-                <div className="mt-4">
-                  <span className="font-medium">Prize Description:</span>
-                  <p className="mt-2 text-sm text-gray-600 whitespace-pre-wrap">
-                    {promotion.prizeDescription}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <div className="grid gap-8 md:grid-cols-12">
+          <div className="md:col-span-7 space-y-6">
+            <Card className="overflow-hidden">
+              <CardHeader className="bg-gray-50 border-b">
+                <CardTitle>Promotion Information</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-6">
+                <div className="grid gap-4">
+                  <div>
+                    <h3 className="font-medium text-gray-900 mb-2">Description</h3>
+                    <p className="text-gray-600 whitespace-pre-wrap">
+                      {promotion.prizeDescription}
+                    </p>
+                  </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Order Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4">
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Order No:</span>
-                  <span>{promotion.orderNo}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <User className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Order By:</span>
-                  <span>{promotion.orderBy}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Order Date & Time:</span>
-                  <span>
-                    {new Date(promotion.orderDate).toLocaleDateString()} {promotion.orderTime}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Venue:</span>
-                  <span>{promotion.venue}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DollarSign className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Promotion Cost:</span>
-                  <span>${promotion.promotionCost.toFixed(2)}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Quantity:</span>
-                  <span>{promotion.quantity}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <DollarSign className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Total Cost:</span>
-                  <span>${promotion.totalCost.toFixed(2)}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Status:</span>
-                  <StatusBadge status={promotion.status} />
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">Promotion Code:</span>
-                  <span className="font-mono bg-gray-100 px-2 py-1 rounded">
-                    {promotion.code}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <h3 className="font-medium mb-4">Items</h3>
-                <div className="space-y-3">
-                  {promotion.items.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center py-2 border-b">
-                      <span>{item.description}</span>
-                      <span>${item.price.toFixed(2)}</span>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Start Date</p>
+                      <p className="text-gray-600">{new Date(promotion.startDate).toLocaleDateString()}</p>
                     </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">End Date</p>
+                      <p className="text-gray-600">{new Date(promotion.endDate).toLocaleDateString()}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Prize Draw Date</p>
+                      <p className="text-gray-600">{new Date(promotion.prizeDrawDate).toLocaleDateString()}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Order Before</p>
+                      <p className="text-gray-600">{new Date(promotion.orderBeforeDate).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="bg-gray-50 border-b">
+                <CardTitle>Order Details</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="grid gap-6">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Order Number</p>
+                      <p className="text-gray-600">{promotion.orderNo}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Ordered By</p>
+                      <p className="text-gray-600">{promotion.orderBy}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Order Date & Time</p>
+                      <p className="text-gray-600">
+                        {new Date(promotion.orderDate).toLocaleDateString()} {promotion.orderTime}
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-700">Status</p>
+                      <StatusBadge status={promotion.status} />
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t">
+                    <h3 className="font-medium text-gray-900 mb-4">Items</h3>
+                    <div className="space-y-3">
+                      {promotion.items.map((item, index) => (
+                        <div key={index} className="flex justify-between items-center py-2 px-4 bg-gray-50 rounded-lg">
+                          <span className="text-gray-700">{item.description}</span>
+                          <span className="font-medium">${item.price.toFixed(2)}</span>
+                        </div>
+                      ))}
+                      <div className="flex justify-between items-center py-3 px-4 bg-primary/5 rounded-lg mt-4">
+                        <span className="font-medium text-gray-900">Total Cost</span>
+                        <span className="font-semibold text-primary">${promotion.totalCost.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="md:col-span-5 space-y-6">
+            <Card className="overflow-hidden">
+              <AspectRatio ratio={16/9}>
+                <img
+                  src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
+                  alt={promotion.title}
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+              <CardContent className="p-6">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {promotion.tags?.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <p className="font-medium text-gray-700">Venue</p>
+                    <p className="text-gray-600">{promotion.venue}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="font-medium text-gray-700">Promotion Code</p>
+                    <code className="px-3 py-1 bg-gray-100 rounded-md text-sm font-mono">
+                      {promotion.code}
+                    </code>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

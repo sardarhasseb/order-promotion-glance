@@ -20,6 +20,7 @@ export const promotionsData: Promotion[] = [
     venue: "Algester Sports Inc",
     status: "Ordered",
     code: "BF23",
+    tags: ["Featured", "Ending soon", "Tasi Favourite"],
     items: [
       {
         description: "Item Description",
@@ -41,7 +42,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2023-06-01",
     endDate: "2023-08-31",
     status: "Closed",
-    amount: "$1,200.00",
     code: "SUMMER23"
   },
   {
@@ -50,7 +50,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2023-08-15",
     endDate: "2023-09-15",
     status: "Closed",
-    amount: "$850.00",
     code: "BTS2023"
   },
   {
@@ -59,7 +58,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2023-12-01",
     endDate: "2023-12-31",
     status: "Closed",
-    amount: "$3,200.00",
     code: "HOLIDAY23"
   },
   {
@@ -68,7 +66,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-01-01",
     endDate: "2024-01-15",
     status: "Closed",
-    amount: "$1,800.00",
     code: "NY2024"
   },
   {
@@ -77,7 +74,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-02-01",
     endDate: "2024-02-14",
     status: "Closed",
-    amount: "$950.00",
     code: "VDAY24"
   },
   {
@@ -86,7 +82,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-03-01",
     endDate: "2024-04-30",
     status: "Dispatched",
-    amount: "$1,500.00",
     code: "SPRING24"
   },
   {
@@ -95,7 +90,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-03-15",
     endDate: "2024-04-10",
     status: "In Preparation",
-    amount: "$780.00",
     code: "EASTER24"
   },
   {
@@ -104,7 +98,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-04-15",
     endDate: "2024-05-12",
     status: "Ordered",
-    amount: "$1,200.00",
     code: "MOM2024"
   },
   {
@@ -113,7 +106,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-04-01",
     endDate: "2024-04-03",
     status: "Ordered",
-    amount: "$600.00",
     code: "FLASH0423"
   },
   {
@@ -122,7 +114,6 @@ export const promotionsData: Promotion[] = [
     orderDate: "2024-05-01",
     endDate: "2024-05-15",
     status: "Cancelled",
-    amount: "$950.00",
     code: "SUMMER24PRE"
   }
 ];
