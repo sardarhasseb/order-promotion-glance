@@ -39,10 +39,23 @@ export const promotionsData: Promotion[] = [
   {
     id: "PR-2023-001",
     name: "Summer Sale 2023",
-    orderDate: "2023-06-01",
+    title: "Summer Splash",
+    orderBeforeDate: "2023-05-15",
+    startDate: "2023-06-01",
     endDate: "2023-08-31",
+    prizeDrawDate: "2023-09-05",
+    prizeDescription: "Summer sale with exciting prizes",
+    orderNo: "PRM-ORD-000002",
+    orderBy: "John Doe",
+    orderDate: "2023-05-20",
+    orderTime: "10:00 AM",
+    promotionCost: 200.00,
+    quantity: 1,
+    totalCost: 200.00,
+    venue: "Central Mall",
     status: "Closed",
-    code: "SUMMER23"
+    code: "SUMMER23",
+    items: [{ description: "Summer Package", price: 200.00 }]
   },
   {
     id: "PR-2023-002",
